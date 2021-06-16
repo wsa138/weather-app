@@ -1,2 +1,2 @@
-console.log("test")
-let t = "test"
+console.log('test')
+let t = 'test'
