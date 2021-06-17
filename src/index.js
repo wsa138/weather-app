@@ -1,3 +1,5 @@
+import './style.css';
+
 async function getData(city) {
   try {
     const response = await fetch(
