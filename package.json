@@ -4,7 +4,10 @@
   "description": "A weather app.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config=webpack.config.prod.js",
+    "build-dev": "webpack --config=webpack.config.dev.js",
+    "watch": "webpack --watch --config=webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +21,14 @@
   },
   "homepage": "https://github.com/wsa138/weather-app#readme",
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
     "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.23.4"
+    "eslint-plugin-import": "^2.23.4",
+    "html-webpack-plugin": "^5.3.1",
+    "webpack": "^5.39.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-merge": "^5.8.0"
   }
 }
