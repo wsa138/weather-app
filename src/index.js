@@ -1,5 +1,6 @@
 import './style.css';
 
+// Get weather data and set variables to be used.
 async function getData(city) {
   try {
     const response = await fetch(
@@ -15,9 +16,11 @@ async function getData(city) {
       Humidity: ${humidity}, Weather Description: ${weatherDescription}, 
       Wind Direction: ${windDirection}, Wind Speed: ${speed}`
     );
+    return temp;
   } catch (error) {
     console.log(error, 'There was an error getting the weather data');
   }
 }
 
-getData('London');
+// Console logs the returned value from getData which right now is temp
+getData('Eastchester').then((rtnVal) => console.log(rtnVal));
