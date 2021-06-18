@@ -16,11 +16,19 @@ async function getData(city) {
       Humidity: ${humidity}, Weather Description: ${weatherDescription}, 
       Wind Direction: ${windDirection}, Wind Speed: ${speed}`
     );
-    return temp;
+    return {
+      temp,
+      temp_max,
+      temp_min,
+      humidity,
+      weatherDescription,
+      windDirection,
+      speed,
+    };
   } catch (error) {
     console.log(error, 'There was an error getting the weather data');
   }
 }
 
 // Console logs the returned value from getData which right now is temp
-getData('Eastchester').then((rtnVal) => console.log(rtnVal));
+getData('Eastchester').then((weatherInfo) => console.log(weatherInfo));
