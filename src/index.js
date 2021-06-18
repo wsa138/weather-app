@@ -8,14 +8,9 @@ async function getData(city) {
     );
     const cityInfo = await response.json();
     console.log(cityInfo);
-    const { temp, temp_max, temp_min, humidity, pressure } = cityInfo.main;
+    const { temp, temp_max, temp_min, humidity } = cityInfo.main;
     const weatherDescription = cityInfo.weather[0].description;
     const { deg: windDirection, speed } = cityInfo.wind;
-    console.log(
-      `Temp: ${temp}, Max Temp: ${temp_max}, Min Temp: ${temp_min}, 
-      Humidity: ${humidity}, Weather Description: ${weatherDescription}, 
-      Wind Direction: ${windDirection}, Wind Speed: ${speed}`
-    );
     return {
       temp,
       temp_max,
