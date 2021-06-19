@@ -32,7 +32,19 @@ async function getWeather(weatherObj) {
     wind: { speed },
     wind: { deg },
   } = await weatherObj;
-  return deg;
+  return {
+    temp,
+    temp_max,
+    temp_min,
+    humidity,
+    sunrise,
+    sunset,
+    timezone,
+    description,
+    main,
+    speed,
+    deg,
+  };
 }
 
 async function runApp() {
