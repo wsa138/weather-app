@@ -56,7 +56,9 @@ document.getElementById('locationSubmit').addEventListener('click', (e) => {
 function displayData(dataObj) {
   const dataContainer = document.getElementById('allInfo');
   Object.keys(dataObj).forEach((key) => {
-    console.log(key, dataObj[key]);
+    const newDataEle = document.createElement('p');
+    newDataEle.textContent = `${key}: ${dataObj[key]}///`;
+    dataContainer.appendChild(newDataEle);
   });
 }
 
