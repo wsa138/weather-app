@@ -53,8 +53,12 @@ document.getElementById('locationSubmit').addEventListener('click', (e) => {
   runApp();
 });
 
+// Displays the information to the page.
 function displayData(dataObj) {
   const dataContainer = document.getElementById('allInfo');
+
+  // Loop through object keys and create a paragraph element,
+  // append to displayData.
   Object.keys(dataObj).forEach((key) => {
     const newDataEle = document.createElement('p');
     newDataEle.textContent = `${key}: ${dataObj[key]}///`;
@@ -62,7 +66,7 @@ function displayData(dataObj) {
   });
 }
 
-// Calls fetch request with input location.
+// Runs app which takes input, gets data and display data to page.
 async function runApp() {
   const location = document.getElementById('locationInput').value;
   const weatherData = await getWeather(getData(location));
