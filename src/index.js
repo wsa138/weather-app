@@ -47,15 +47,20 @@ async function getWeather(weatherObj) {
   };
 }
 
-// Calls fetch request with input location.
-async function runApp() {
-  const location = document.getElementById('locationInput').value;
-  const weatherData = await getWeather(getData(location));
-  console.log(weatherData);
-}
-
 // Event listener for location input search.
 document.getElementById('locationSubmit').addEventListener('click', (e) => {
   e.preventDefault();
   runApp();
 });
+
+function displayData(dataObj) {
+  const dataContainer = document.getElementById('allInfo');
+  dataContainer.textContent = 'got it';
+}
+
+// Calls fetch request with input location.
+async function runApp() {
+  const location = document.getElementById('locationInput').value;
+  const weatherData = await getWeather(getData(location));
+  displayData(weatherData);
+}
