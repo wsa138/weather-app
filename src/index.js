@@ -47,10 +47,16 @@ async function getWeather(weatherObj) {
   };
 }
 
+// Clear weather info text content from the page.
+function clearData() {
+  const dataContainer = document.getElementById('mainInfo');
+  dataContainer.textContent = '';
+}
+
 // Displays the information to the page.
 function displayData(dataObj, location) {
   clearData();
-  const dataContainer = document.getElementById('allInfo');
+  const dataContainer = document.getElementById('mainInfo');
 
   // Display the submitted loation.
   const city = document.createElement('p');
@@ -61,14 +67,9 @@ function displayData(dataObj, location) {
   // append to displayData.
   Object.keys(dataObj).forEach((key) => {
     const newDataEle = document.createElement('p');
-    newDataEle.textContent = `${key}: ${dataObj[key]}///`;
+    newDataEle.textContent = `${key}: ${dataObj[key]}`;
     dataContainer.appendChild(newDataEle);
   });
-}
-
-function clearData() {
-  const dataContainer = document.getElementById('allInfo');
-  dataContainer.textContent = '';
 }
 
 // Runs app which takes input, gets data and display data to page.
