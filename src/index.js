@@ -9,11 +9,11 @@ async function getData(city) {
     const responseJson = await response.json();
     return responseJson;
   } catch (error) {
-    console.log(error, 'There was an error getting the weather info');
+    return console.log(error, 'There was an error getting the weather info');
   }
 }
 
-// Return weather info as object.
+// Return necessary weather info as a new object.
 async function getWeather(weatherObj) {
   const {
     main: { temp },
@@ -47,9 +47,15 @@ async function getWeather(weatherObj) {
   };
 }
 
+// Calls fetch request with input location.
 async function runApp() {
-  const result = await getWeather(getData('London'));
-  console.log(result);
+  const location = document.getElementById('locationInput').value;
+  const weatherData = await getWeather(getData(location));
+  console.log(weatherData);
 }
 
-runApp();
+// Event listener for location input search.
+document.getElementById('locationSubmit').addEventListener('click', (e) => {
+  e.preventDefault();
+  runApp();
+});
