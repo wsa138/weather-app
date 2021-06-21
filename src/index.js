@@ -55,7 +55,9 @@ document.getElementById('locationSubmit').addEventListener('click', (e) => {
 
 function displayData(dataObj) {
   const dataContainer = document.getElementById('allInfo');
-  dataContainer.textContent = 'got it';
+  for (const key of Object.keys(dataObj)) {
+    console.log(key, dataObj[key]);
+  }
 }
 
 // Calls fetch request with input location.
