@@ -47,15 +47,15 @@ async function getWeather(weatherObj) {
   };
 }
 
-// Event listener for location input search.
-document.getElementById('locationSubmit').addEventListener('click', (e) => {
-  e.preventDefault();
-  runApp();
-});
-
 // Displays the information to the page.
-function displayData(dataObj) {
+function displayData(dataObj, location) {
+  clearData();
   const dataContainer = document.getElementById('allInfo');
+
+  // Display the submitted loation.
+  const city = document.createElement('p');
+  city.textContent = location;
+  dataContainer.appendChild(city);
 
   // Loop through object keys and create a paragraph element,
   // append to displayData.
@@ -66,9 +66,20 @@ function displayData(dataObj) {
   });
 }
 
+function clearData() {
+  const dataContainer = document.getElementById('allInfo');
+  dataContainer.textContent = '';
+}
+
 // Runs app which takes input, gets data and display data to page.
 async function runApp() {
   const location = document.getElementById('locationInput').value;
   const weatherData = await getWeather(getData(location));
-  displayData(weatherData);
+  displayData(weatherData, location);
 }
+
+// Event listener for location input search.
+document.getElementById('locationSubmit').addEventListener('click', (e) => {
+  e.preventDefault();
+  runApp();
+});
