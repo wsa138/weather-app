@@ -172,10 +172,12 @@ function displayData(dataObj, location) {
   // DOM elements.
   const date = document.getElementById('dateText');
   const description = document.getElementById('descriptionText');
+  const sun = document.getElementById('sunText');
 
   // Replace text content
   replaceElementValues(date, dataObj.date);
   replaceElementValues(description, dataObj.description);
+  replaceElementValues(sun, `${dataObj.sun.sunrise}/${dataObj.sun.sunset}`);
 }
 
 // Replace the text content of element with the provided value.
