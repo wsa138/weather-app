@@ -8,6 +8,10 @@ body {
   background: skyblue;
 }
 
+#location {
+  text-align: center;
+}
+
 #currentWeather {
   display: flex;
   background-color: blue;
