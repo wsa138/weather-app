@@ -20,7 +20,6 @@ body {
 #mainInfo {
   background-color: grey;
   flex-grow: 1;
-  max-width: 50%;
   display: flex;
   justify-content: space-around;
 }
@@ -28,17 +27,16 @@ body {
 #gifSection {
   background-color: green;
   flex-grow: 1;
-  max-width: 50%;
+  max-width: 33%;
 }
 
 #tempSection {
   background-color: red;
   flex-grow: 1;
-  max-width: 50%;
+  max-width: 33%;
 }
 
-#secondaryInfo {
-  background-color: white;
+#windRainSection {
   flex-grow: 1;
-  max-width: 50%;
+  max-width: 33%;
 }
