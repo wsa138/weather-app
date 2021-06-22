@@ -168,4 +168,11 @@ function displayData(dataObj, location) {
   console.log(dataObj);
   //TODO: Either pull all the values from dataObj and display them correctly
   //or create functions that will pull the data and display it correctly.
+  let testEle = document.getElementById('descriptionText');
+  replaceElementValues(testEle, dataObj.description);
+}
+
+// Replace the text content of element with the provided value.
+function replaceElementValues(ele, val) {
+  ele.textContent = val;
 }
