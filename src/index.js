@@ -170,7 +170,7 @@ function displayData(dataObj, location) {
   console.log(dataObj);
 
   // DOM elements.
-  const date = document.getElementById('datText');
+  const date = document.getElementById('dateText');
   const description = document.getElementById('descriptionText');
 
   // Replace text content
