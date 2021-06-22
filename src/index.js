@@ -147,6 +147,8 @@ function convertMilitary(hour) {
 // creates a new object with necessary properties.
 function updateWeatherData(original, converted) {
   const updatedData = { ...original, ...converted };
+  const date = new Date();
+  updatedData['date'] = date.toDateString();
   delete updatedData.deg;
   delete updatedData.sunrise;
   delete updatedData.sunset;
@@ -166,10 +168,14 @@ async function runApp() {
 function displayData(dataObj, location) {
   clearData();
   console.log(dataObj);
-  //TODO: Either pull all the values from dataObj and display them correctly
-  //or create functions that will pull the data and display it correctly.
-  let testEle = document.getElementById('descriptionText');
-  replaceElementValues(testEle, dataObj.description);
+
+  // DOM elements.
+  const date = document.getElementById('datText');
+  const description = document.getElementById('descriptionText');
+
+  // Replace text content
+  replaceElementValues(date, dataObj.date);
+  replaceElementValues(description, dataObj.description);
 }
 
 // Replace the text content of element with the provided value.
