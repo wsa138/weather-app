@@ -8,19 +8,37 @@ body {
   background: skyblue;
 }
 
-#weatherReport {
+#currentWeather {
   display: flex;
   background-color: blue;
   height: 500px;
   margin: 0px 50px 0px 50px;
 }
 
+/* Weather Info Section */
+
 #mainInfo {
   background-color: grey;
   flex-grow: 1;
+  max-width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#gifSection {
+  background-color: green;
+  flex-grow: 1;
+  max-width: 50%;
+}
+
+#tempSection {
+  background-color: red;
+  flex-grow: 1;
+  max-width: 50%;
 }
 
 #secondaryInfo {
   background-color: white;
   flex-grow: 1;
+  max-width: 50%;
 }

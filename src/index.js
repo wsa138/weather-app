@@ -49,14 +49,14 @@ async function getWeather(weatherObj) {
 
 // Clear weather info text content from the page.
 function clearData() {
-  const dataContainer = document.getElementById('mainInfo');
+  const dataContainer = document.getElementById('tempSection');
   dataContainer.textContent = '';
 }
 
 // Displays the information to the page.
 function displayData(dataObj, location) {
   clearData();
-  const dataContainer = document.getElementById('mainInfo');
+  const dataContainer = document.getElementById('tempSection');
 
   // Display the submitted loation.
   const city = document.createElement('p');
@@ -76,6 +76,7 @@ function displayData(dataObj, location) {
 async function runApp() {
   const location = document.getElementById('locationInput').value;
   const weatherData = await getWeather(getData(location));
+  convertValues(weatherData);
   displayData(weatherData, location);
 }
 
@@ -84,3 +85,49 @@ document.getElementById('locationSubmit').addEventListener('click', (e) => {
   e.preventDefault();
   runApp();
 });
+
+// TODO: A function that converts object values to appropriate types.
+function convertValues(obj) {
+  console.log(obj);
+  convertWind(obj);
+}
+
+// Convert wind direction
+function convertWind(obj) {
+  const windDirection = obj.deg;
+  if (windDirection > 349 || windDirection <= 11) {
+    console.log('N');
+  } else if (windDirection > 11 && windDirection <= 34) {
+    console.log('NNE');
+  } else if (windDirection > 34 && windDirection <= 56) {
+    console.log('NE');
+  } else if (windDirection > 56 && windDirection <= 80) {
+    console.log('ENE');
+  } else if (windDirection > 80 && windDirection <= 101) {
+    console.log('E');
+  } else if (windDirection > 101 && windDirection <= 124) {
+    console.log('ESE');
+  } else if (windDirection > 124 && windDirection <= 146) {
+    console.log('SE');
+  } else if (windDirection > 146 && windDirection <= 169) {
+    console.log('SSE');
+  } else if (windDirection > 169 && windDirection <= 191) {
+    console.log('S');
+  } else if (windDirection > 191 && windDirection <= 214) {
+    console.log('SSW');
+  } else if (windDirection > 214 && windDirection <= 236) {
+    console.log('SW');
+  } else if (windDirection > 236 && windDirection <= 259) {
+    console.log('WSW');
+  } else if (windDirection > 259 && windDirection <= 281) {
+    console.log('W');
+  } else if (windDirection > 281 && windDirection <= 304) {
+    console.log('WNW');
+  } else if (windDirection > 304 && windDirection <= 326) {
+    console.log('NW');
+  } else if (windDirection > 326 && windDirection <= 349) {
+    console.log('NNW');
+  } else {
+    console.log('N/A');
+  }
+}
