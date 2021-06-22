@@ -166,4 +166,6 @@ async function runApp() {
 function displayData(dataObj, location) {
   clearData();
   console.log(dataObj);
+  //TODO: Either pull all the values from dataObj and display them correctly
+  //or create functions that will pull the data and display it correctly.
 }
