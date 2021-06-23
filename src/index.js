@@ -148,7 +148,7 @@ function convertMilitary(hour) {
 function updateWeatherData(original, converted) {
   const updatedData = { ...original, ...converted };
   const date = new Date();
-  updatedData['date'] = date.toDateString();
+  updatedData.date = date.toDateString();
   delete updatedData.deg;
   delete updatedData.sunrise;
   delete updatedData.sunset;
@@ -164,6 +164,11 @@ async function runApp() {
   displayData(newWeatherData, location);
 }
 
+// Replace the text content of element with the provided value.
+function replaceElementValues(ele, val) {
+  ele.textContent = val;
+}
+
 // Displays the information to the page.
 function displayData(dataObj, location) {
   clearData();
@@ -173,14 +178,12 @@ function displayData(dataObj, location) {
   const date = document.getElementById('dateText');
   const description = document.getElementById('descriptionText');
   const sun = document.getElementById('sunText');
+  //FIX: Element keeps coming up null.
+  const temp = document.getElementById('tempText');
 
   // Replace text content
   replaceElementValues(date, dataObj.date);
   replaceElementValues(description, dataObj.description);
   replaceElementValues(sun, `${dataObj.sun.sunrise}/${dataObj.sun.sunset}`);
-}
-
-// Replace the text content of element with the provided value.
-function replaceElementValues(ele, val) {
-  ele.textContent = val;
+  replaceElementValues(temp, dataObj.temp);
 }
