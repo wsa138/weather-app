@@ -171,14 +171,21 @@ function displayData(dataObj, location) {
   const date = document.getElementById('dateText');
   const description = document.getElementById('descriptionText');
   const sun = document.getElementById('sunText');
-  console.log(document.getElementById('temperature'));
-  const temperature = document.getElementById('temperature');
+  const temp = document.getElementById('tempText');
+  const tempMax = document.getElementById('tempMaxText');
+  const tempMin = document.getElementById('tempMinText');
+  const precipitation = document.getElementById('precipitation');
+  const humidity = document.getElementById('humidity');
+  const wind = document.getElementById('wind');
 
   // Replace text content
   replaceElementValues(date, dataObj.date);
   replaceElementValues(description, dataObj.description);
   replaceElementValues(sun, `${dataObj.sun.sunrise}/${dataObj.sun.sunset}`);
-  replaceElementValues(temperature, dataObj.temp);
+  replaceElementValues(temp, dataObj.temp);
+  replaceElementValues(tempMax, dataObj.temp_max);
+  replaceElementValues(tempMin, dataObj.temp_min);
+  replaceElementValues(precipitation, dataObj.precipitation);
+  replaceElementValues(humidity, dataObj.humidity);
+  replaceElementValues(wind, `${dataObj.speed}/${dataObj.wind}`);
 }
-
-console.log(document.getElementById('temperature'));
