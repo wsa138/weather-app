@@ -174,7 +174,6 @@ function displayData(dataObj, location) {
   const temp = document.getElementById('tempText');
   const tempMax = document.getElementById('tempMaxText');
   const tempMin = document.getElementById('tempMinText');
-  const precipitation = document.getElementById('precipitation');
   const humidity = document.getElementById('humidity');
   const wind = document.getElementById('wind');
 
@@ -185,7 +184,6 @@ function displayData(dataObj, location) {
   replaceElementValues(temp, dataObj.temp);
   replaceElementValues(tempMax, dataObj.temp_max);
   replaceElementValues(tempMin, dataObj.temp_min);
-  replaceElementValues(precipitation, dataObj.precipitation);
-  replaceElementValues(humidity, dataObj.humidity);
+  replaceElementValues(humidity, `${dataObj.humidity}%`);
   replaceElementValues(wind, `${dataObj.speed}/${dataObj.wind}`);
 }

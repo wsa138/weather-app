@@ -15,29 +15,23 @@
     <input type="submit" value="Search" id="locationSubmit">
   </form>
 
-  <div id="location">
-    <h1>Location</h1>
+  <div id="cityDate">
+    <h1 id="locationText">Location</h1>
+    <h2 id="dateText">Date</h2>
   </div>
 
   <section id="currentWeather">
     <div id="mainInfo" class="info">
       <div id="gifSection">
-        <div>
-          <p id="dateText">Date</p>
-        </div>
         <img id="weatherGif" src="https://media.tenor.com/images/80f03b17dc02ae6b32bf3e71dd046357/tenor.gif"
           alt="Gif of current weather">
         <div id="description">
           <p id="descriptionText">description</p>
         </div>
         <div>
-          <h3>Sunrise/Sunset</h3>
-          <p id="sunText">Sun</p>
-        </div>
-      </div>
-      <div id="tempSection">
-        <div>
           <p id="tempText">Temp</p>
+          <button> &#176F</button>
+          <button> &#176C</button>
         </div>
         <div>
           <p id="tempMaxText">Max</p>
@@ -45,13 +39,16 @@
         <div>
           <p id="tempMinText">Min</p>
         </div>
+
+
       </div>
-      <div id="windRainSection">
-        <div>
-          <p id="precipitation">Precip</p>
-        </div>
+      <div id="tempSection">
         <div>
           <p id="humidity">Humidity</p>
+        </div>
+        <div>
+          <h3>Sunrise/Sunset</h3>
+          <p id="sunText">Sun</p>
         </div>
         <div>
           <p id="wind">wind</p>
