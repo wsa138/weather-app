@@ -45,12 +45,6 @@ async function getWeather(weatherObj) {
   };
 }
 
-// Clear weather info text content from the page.
-function clearData() {
-  const dataContainer = document.getElementById('tempSection');
-  dataContainer.textContent = '';
-}
-
 // Event listener for location input search.
 document.getElementById('locationSubmit').addEventListener('click', (e) => {
   e.preventDefault();
@@ -171,19 +165,20 @@ function replaceElementValues(ele, val) {
 
 // Displays the information to the page.
 function displayData(dataObj, location) {
-  clearData();
   console.log(dataObj);
 
   // DOM elements.
   const date = document.getElementById('dateText');
   const description = document.getElementById('descriptionText');
   const sun = document.getElementById('sunText');
-  //FIX: Element keeps coming up null.
-  const temp = document.getElementById('tempText');
+  console.log(document.getElementById('temperature'));
+  const temperature = document.getElementById('temperature');
 
   // Replace text content
   replaceElementValues(date, dataObj.date);
   replaceElementValues(description, dataObj.description);
   replaceElementValues(sun, `${dataObj.sun.sunrise}/${dataObj.sun.sunset}`);
-  replaceElementValues(temp, dataObj.temp);
+  replaceElementValues(temperature, dataObj.temp);
 }
+
+console.log(document.getElementById('temperature'));
