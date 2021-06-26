@@ -14,6 +14,7 @@ body {
 
 #currentWeather {
   display: flex;
+  justify-content: center;
   background-color: blue;
   height: 300px;
   margin: 0px 50px 0px 50px;
@@ -28,7 +29,7 @@ body {
   justify-content: space-around;
 }
 
-#gifSection {
+#mainInfo {
   background-color: green;
   flex-grow: 1;
   max-width: 33%;
@@ -38,7 +39,7 @@ body {
   align-items: center;
 }
 
-#tempSection {
+#otherInfo {
   background-color: red;
   flex-grow: 1;
   max-width: 33%;
