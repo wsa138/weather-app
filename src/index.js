@@ -15,6 +15,7 @@ async function getData(city) {
 
 // Return necessary weather info as a new object.
 async function getWeather(weatherObj) {
+  console.log(weatherObj);
   const {
     main: { temp },
     main: { temp_max },
