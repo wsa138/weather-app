@@ -177,6 +177,7 @@ function displayData(dataObj, location) {
   const tempMin = document.getElementById('tempMinText');
   const humidity = document.getElementById('humidity');
   const wind = document.getElementById('wind');
+  const locationEle = document.getElementById('locationText');
 
   // Replace text content
   replaceElementValues(date, dataObj.date);
@@ -187,4 +188,5 @@ function displayData(dataObj, location) {
   replaceElementValues(tempMin, dataObj.temp_min);
   replaceElementValues(humidity, `${dataObj.humidity}%`);
   replaceElementValues(wind, `${dataObj.speed}/${dataObj.wind}`);
+  replaceElementValues(locationEle, location);
 }
