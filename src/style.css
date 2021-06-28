@@ -56,15 +56,22 @@ body {
   align-items: center;
 }
 
-#otherInfo div {
+#tempSection div {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#currentTemp {
+#tempSection div #currentTemp {
+  flex-direction: row;
+}
+
+#otherInfo div {
+  flex-grow: 1;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*Weather Info Elements */
