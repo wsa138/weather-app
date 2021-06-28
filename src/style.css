@@ -81,6 +81,12 @@ body {
   background-color: blue;
 }
 
+/*FIX: This is not putting elements on same line.*/
+#mainTemp {
+  display: flex;
+  flex-direction: row;
+}
+
 #descriptionText {
   font-size: 2rem;
 }
