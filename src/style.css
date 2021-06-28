@@ -22,7 +22,7 @@ body {
 
 /* Weather Info Section Containers*/
 
-#mainInfo {
+#summary {
   background-color: rgb(0, 128, 122);
   flex-grow: 1;
   max-width: 50%;
