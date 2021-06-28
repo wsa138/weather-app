@@ -190,3 +190,5 @@ function displayData(dataObj, location) {
   replaceElementValues(wind, `${dataObj.speed}/${dataObj.wind}`);
   replaceElementValues(locationEle, location);
 }
+
+document.getElementById('locationSubmit').click();
