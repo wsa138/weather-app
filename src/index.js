@@ -1,7 +1,7 @@
 import './style.css';
 
 // DOM elements.
-const date = document.getElementById('dateText');
+const dateText = document.getElementById('dateText');
 const description = document.getElementById('descriptionText');
 const sun = document.getElementById('sunText');
 const temp = document.getElementById('tempText');
@@ -163,7 +163,7 @@ function updateWeatherData(original) {
   updatedData.tempMaxCel = convertTemp(original.temp_max);
   updatedData.tempMinCel = convertTemp(original.temp_min);
   updatedData.wind = convertWind(original.deg);
-  console.log(updatedData);
+
   return updatedData;
 }
 
@@ -183,7 +183,7 @@ function replaceElementValues(ele, val) {
 // Displays the information to the page.
 function displayData(dataObj, location) {
   // Replace text content
-  replaceElementValues(date, dataObj.date);
+  replaceElementValues(dateText, dataObj.date);
   replaceElementValues(description, dataObj.description);
   replaceElementValues(sun, `${dataObj.sunrise}/${dataObj.sunset}`);
   replaceElementValues(temp, dataObj.temp);
