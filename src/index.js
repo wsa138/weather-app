@@ -202,4 +202,6 @@ document.getElementById('tempC').addEventListener('click', () => {
 });
 
 // Replace temperature values with selected temperature value.
-function changeTemp(val) {}
+function changeTemp() {
+  console.log('change temp');
+}
