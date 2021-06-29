@@ -177,8 +177,6 @@ function replaceElementValues(ele, val) {
 
 // Displays the information to the page.
 function displayData(dataObj, location) {
-  console.log(dataObj);
-
   // Replace text content
   replaceElementValues(date, dataObj.date);
   replaceElementValues(description, dataObj.description);
@@ -203,12 +201,21 @@ document.getElementById('tempC').addEventListener('click', () => {
 
 // Replace temperature values with selected temperature value.
 // TODO: Limit display temp to two decimal places.
-// FIX: Prevent unit button from being pressed while that unit is already displayed.
 function changeTemp(unit, eleMain, eleMax, eleMin) {
-  console.log(eleMain.textContent, eleMax, eleMin);
+  if (eleMain.classList.contains(unit)) {
+    return;
+  }
   eleMain.textContent = convertUnit(unit, parseFloat(eleMain.textContent));
   eleMax.textContent = convertUnit(unit, parseFloat(eleMax.textContent));
   eleMin.textContent = convertUnit(unit, parseFloat(eleMin.textContent));
+
+  if (unit === 'celsius') {
+    eleMain.classList.remove('fahrenheit');
+    eleMain.classList.add('celsius');
+  } else if (unit === 'fahrenheit') {
+    eleMain.classList.remove('celsius');
+    eleMain.classList.add('fahrenheit');
+  }
 }
 
 // Convert fahrenheit to celsius.
