@@ -68,8 +68,8 @@ function convertValues(obj) {
 }
 
 // Convert wind direction
-function convertWind(obj) {
-  const windDirection = obj.deg;
+function convertWind(directionDegree) {
+  const windDirection = directionDegree;
   if (windDirection > 349 || windDirection <= 11) {
     return 'N';
   }
@@ -146,23 +146,23 @@ function convertTemp(tempNum) {
   return ((tempNum - 32) * 5) / 9;
 }
 
-// Takes original weather data and converted data and
-// creates a new object with necessary properties.
+// Takes original weather data and creates new object with the necessary
+// properties created by running appropriate functions on original weather data.
 function updateWeatherData(original) {
-  console.log(original);
   const updatedData = { ...original };
-  const date = new Date();
-  updatedData.date = date.toDateString();
+
   delete updatedData.deg;
   delete updatedData.sunrise;
   delete updatedData.sunset;
 
+  const date = new Date();
+  updatedData.date = date.toDateString();
   updatedData.sunrise = convertSun(original.sunrise);
   updatedData.sunset = convertSun(original.sunset);
-
   updatedData.tempCel = convertTemp(original.temp);
   updatedData.tempMaxCel = convertTemp(original.temp_max);
   updatedData.tempMinCel = convertTemp(original.temp_min);
+  updatedData.wind = convertWind(original.deg);
   console.log(updatedData);
   return updatedData;
 }
