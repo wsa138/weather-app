@@ -192,3 +192,14 @@ function displayData(dataObj, location) {
 }
 
 document.getElementById('locationSubmit').click();
+
+document.getElementById('tempF').addEventListener('click', () => {
+  changeTemp();
+});
+
+document.getElementById('tempC').addEventListener('click', () => {
+  changeTemp();
+});
+
+// Replace temperature values with selected temperature value.
+function changeTemp(val) {}
