@@ -26,7 +26,6 @@ async function getData(city) {
 
 // Return necessary weather info as a new object.
 async function getWeather(weatherObj) {
-  console.log(weatherObj);
   const {
     main: { temp },
     main: { temp_max },
@@ -123,22 +122,15 @@ function convertWind(obj) {
 }
 
 // Convert the sunrise and sunset times.
-function convertSun(obj) {
-  const sunsetOld = new Date(obj.sunset * 1000);
-  const sunriseOld = new Date(obj.sunrise * 1000);
+function convertSun(sunTime) {
+  const sunOld = new Date(sunTime * 1000);
 
   // Converted sunset
-  const sunsetNew = `${convertMilitary(
-    sunsetOld.getHours()
-  )}:${sunsetOld.getMinutes()}:${sunsetOld.getSeconds()}`;
+  const sunNew = `${convertMilitary(
+    sunOld.getHours()
+  )}:${sunOld.getMinutes()}:${sunOld.getSeconds()}`;
 
-  // Converted sunrise
-  const sunriseNew = `${convertMilitary(
-    sunriseOld.getHours()
-  )}:${sunriseOld.getMinutes()}:${sunriseOld.getSeconds()}`;
-
-  const sun = { sunrise: sunriseNew, sunset: sunsetNew };
-  return sun;
+  return sunNew;
 }
 
 // Convert military time hours to standard.
@@ -156,14 +148,18 @@ function convertTemp(tempNum) {
 
 // Takes original weather data and converted data and
 // creates a new object with necessary properties.
-function updateWeatherData(original, converted) {
+function updateWeatherData(original) {
   console.log(original);
-  const updatedData = { ...original, ...converted };
+  const updatedData = { ...original };
   const date = new Date();
   updatedData.date = date.toDateString();
   delete updatedData.deg;
   delete updatedData.sunrise;
   delete updatedData.sunset;
+
+  updatedData.sunrise = convertSun(original.sunrise);
+  updatedData.sunset = convertSun(original.sunset);
+
   updatedData.tempCel = convertTemp(original.temp);
   updatedData.tempMaxCel = convertTemp(original.temp_max);
   updatedData.tempMinCel = convertTemp(original.temp_min);
@@ -175,8 +171,7 @@ function updateWeatherData(original, converted) {
 async function runApp() {
   const location = document.getElementById('locationInput').value;
   const weatherData = await getWeather(getData(location));
-  const convertedWeather = convertValues(weatherData);
-  const newWeatherData = updateWeatherData(weatherData, convertedWeather);
+  const newWeatherData = updateWeatherData(weatherData);
   displayData(newWeatherData, location);
 }
 
@@ -190,7 +185,7 @@ function displayData(dataObj, location) {
   // Replace text content
   replaceElementValues(date, dataObj.date);
   replaceElementValues(description, dataObj.description);
-  replaceElementValues(sun, `${dataObj.sun.sunrise}/${dataObj.sun.sunset}`);
+  replaceElementValues(sun, `${dataObj.sunrise}/${dataObj.sunset}`);
   replaceElementValues(temp, dataObj.temp);
   replaceElementValues(tempMax, dataObj.temp_max);
   replaceElementValues(tempMin, dataObj.temp_min);
