@@ -1,5 +1,16 @@
 import './style.css';
 
+// DOM elements.
+const date = document.getElementById('dateText');
+const description = document.getElementById('descriptionText');
+const sun = document.getElementById('sunText');
+const temp = document.getElementById('tempText');
+const tempMax = document.getElementById('tempMaxText');
+const tempMin = document.getElementById('tempMinText');
+const humidity = document.getElementById('humidity');
+const wind = document.getElementById('wind');
+const locationEle = document.getElementById('locationText');
+
 // Make fetch request for city info and return json object.
 async function getData(city) {
   try {
@@ -168,17 +179,6 @@ function replaceElementValues(ele, val) {
 function displayData(dataObj, location) {
   console.log(dataObj);
 
-  // DOM elements.
-  const date = document.getElementById('dateText');
-  const description = document.getElementById('descriptionText');
-  const sun = document.getElementById('sunText');
-  const temp = document.getElementById('tempText');
-  const tempMax = document.getElementById('tempMaxText');
-  const tempMin = document.getElementById('tempMinText');
-  const humidity = document.getElementById('humidity');
-  const wind = document.getElementById('wind');
-  const locationEle = document.getElementById('locationText');
-
   // Replace text content
   replaceElementValues(date, dataObj.date);
   replaceElementValues(description, dataObj.description);
@@ -194,14 +194,28 @@ function displayData(dataObj, location) {
 document.getElementById('locationSubmit').click();
 
 document.getElementById('tempF').addEventListener('click', () => {
-  changeTemp();
+  changeTemp('fahrenheit', temp, tempMax, tempMin);
 });
 
 document.getElementById('tempC').addEventListener('click', () => {
-  changeTemp();
+  changeTemp('celsius', temp, tempMax, tempMin);
 });
 
 // Replace temperature values with selected temperature value.
-function changeTemp() {
-  console.log('change temp');
+// TODO: Limit display temp to two decimal places.
+function changeTemp(unit, eleMain, eleMax, eleMin) {
+  console.log(eleMain.textContent, eleMax, eleMin);
+  eleMain.textContent = convertUnit(unit, parseFloat(eleMain.textContent));
+  eleMax.textContent = convertUnit(unit, parseFloat(eleMax.textContent));
+  eleMin.textContent = convertUnit(unit, parseFloat(eleMin.textContent));
+}
+
+// Convert fahrenheit to celsius.
+function convertUnit(unit, num) {
+  if (unit === 'celsius') {
+    return ((num - 32) * 5) / 9;
+  }
+  if (unit === 'fahrenheit') {
+    return num * (9 / 5) + 32;
+  }
 }
