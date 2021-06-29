@@ -203,6 +203,7 @@ document.getElementById('tempC').addEventListener('click', () => {
 
 // Replace temperature values with selected temperature value.
 // TODO: Limit display temp to two decimal places.
+// FIX: Prevent unit button from being pressed while that unit is already displayed.
 function changeTemp(unit, eleMain, eleMax, eleMin) {
   console.log(eleMain.textContent, eleMax, eleMin);
   eleMain.textContent = convertUnit(unit, parseFloat(eleMain.textContent));
