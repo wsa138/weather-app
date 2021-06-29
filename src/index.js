@@ -149,15 +149,25 @@ function convertMilitary(hour) {
   return hour;
 }
 
+// Convert fahrenheit temperatures to celsius
+function convertTemp(tempNum) {
+  return ((tempNum - 32) * 5) / 9;
+}
+
 // Takes original weather data and converted data and
 // creates a new object with necessary properties.
 function updateWeatherData(original, converted) {
+  console.log(original);
   const updatedData = { ...original, ...converted };
   const date = new Date();
   updatedData.date = date.toDateString();
   delete updatedData.deg;
   delete updatedData.sunrise;
   delete updatedData.sunset;
+  updatedData.tempCel = convertTemp(original.temp);
+  updatedData.tempMaxCel = convertTemp(original.temp_max);
+  updatedData.tempMinCel = convertTemp(original.temp_min);
+  console.log(updatedData);
   return updatedData;
 }
 
@@ -192,38 +202,14 @@ function displayData(dataObj, location) {
 document.getElementById('locationSubmit').click();
 
 document.getElementById('tempF').addEventListener('click', () => {
-  changeTemp('fahrenheit', temp, tempMax, tempMin);
+  changeTemp();
 });
 
 document.getElementById('tempC').addEventListener('click', () => {
-  changeTemp('celsius', temp, tempMax, tempMin);
+  changeTemp();
 });
 
 // Replace temperature values with selected temperature value.
-// TODO: Limit display temp to two decimal places.
-function changeTemp(unit, eleMain, eleMax, eleMin) {
-  if (eleMain.classList.contains(unit)) {
-    return;
-  }
-  eleMain.textContent = convertUnit(unit, parseFloat(eleMain.textContent));
-  eleMax.textContent = convertUnit(unit, parseFloat(eleMax.textContent));
-  eleMin.textContent = convertUnit(unit, parseFloat(eleMin.textContent));
-
-  if (unit === 'celsius') {
-    eleMain.classList.remove('fahrenheit');
-    eleMain.classList.add('celsius');
-  } else if (unit === 'fahrenheit') {
-    eleMain.classList.remove('celsius');
-    eleMain.classList.add('fahrenheit');
-  }
-}
-
-// Convert fahrenheit to celsius.
-function convertUnit(unit, num) {
-  if (unit === 'celsius') {
-    return ((num - 32) * 5) / 9;
-  }
-  if (unit === 'fahrenheit') {
-    return num * (9 / 5) + 32;
-  }
+function changeTemp() {
+  console.log('Change temp');
 }
