@@ -10,6 +10,7 @@ const tempMin = document.getElementById('tempMinText');
 const humidity = document.getElementById('humidity');
 const wind = document.getElementById('wind');
 const locationEle = document.getElementById('locationText');
+const weatherGif = document.getElementById('weatherGif');
 
 // Make fetch request for city info and return json object.
 async function getData(city) {
@@ -232,7 +233,41 @@ function updateWeatherData(original) {
   updatedData.tempMinCel = convertTemp(original.temp_min).toFixed(2);
   updatedData.wind = convertWind(original.deg);
   updatedData.weatherType = findGif(original.description);
-  console.log(updatedData);
+
+  getGif(updatedData.weatherType);
 
   return updatedData;
+}
+
+// An object containing weather gif api id's.
+const weatherGifId = {
+  rain: '20847871',
+  snow: '20847872',
+  clear: '20847874',
+  thunderstorm: '20847877',
+  clouds: '20847870',
+};
+
+// Function that takes the weather type and fetches the corresponding weather gif.
+async function getGif(type) {
+  let gifId = 0;
+  if (weatherGifId.hasOwnProperty(type)) {
+    gifId = weatherGifId[type];
+  } else {
+    console.log('No matching gif id.');
+  }
+
+  fetch(`https://g.tenor.com/v1/gifs?ids=${gifId}&key=LIVDSRZULELA`, {
+    mode: 'cors',
+  })
+    .then((response) => {
+      console.log('test');
+      return response.json();
+    })
+    .then((response) => {
+      weatherGif.src = response.results[0].media[0].tinygif.url;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
