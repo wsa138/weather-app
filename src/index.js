@@ -159,6 +159,7 @@ function displayData(dataObj, location) {
   replaceElementValues(humidity, `${dataObj.humidity}%`);
   replaceElementValues(wind, `${dataObj.speed}/${dataObj.wind}`);
   replaceElementValues(locationEle, location);
+  setGif(dataObj.gifId);
 }
 
 document.getElementById('locationSubmit').click();
@@ -233,8 +234,7 @@ function updateWeatherData(original) {
   updatedData.tempMinCel = convertTemp(original.temp_min).toFixed(2);
   updatedData.wind = convertWind(original.deg);
   updatedData.weatherType = findGif(original.description);
-
-  getGif(updatedData.weatherType);
+  updatedData.gifId = getGifId(updatedData.weatherType);
 
   return updatedData;
 }
@@ -249,25 +249,26 @@ const weatherGifId = {
 };
 
 // Function that takes the weather type and fetches the corresponding weather gif.
-async function getGif(type) {
+function getGifId(type) {
   let gifId = 0;
   if (weatherGifId.hasOwnProperty(type)) {
-    gifId = weatherGifId[type];
-  } else {
-    console.log('No matching gif id.');
+    return weatherGifId[type];
   }
+  console.log('No matching gif id.');
+  return 0;
+}
 
-  fetch(`https://g.tenor.com/v1/gifs?ids=${gifId}&key=LIVDSRZULELA`, {
-    mode: 'cors',
-  })
-    .then((response) => {
-      console.log('test');
-      return response.json();
+async function setGif(id) {
+  if (id !== 0) {
+    fetch(`https://g.tenor.com/v1/gifs?ids=${id}&key=LIVDSRZULELA`, {
+      mode: 'cors',
     })
-    .then((response) => {
-      weatherGif.src = response.results[0].media[0].tinygif.url;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((response) => response.json())
+      .then((response) => {
+        weatherGif.src = response.results[0].media[0].tinygif.url;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
