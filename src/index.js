@@ -62,11 +62,6 @@ document.getElementById('locationSubmit').addEventListener('click', (e) => {
   runApp();
 });
 
-// Converts object values to appropriate types.
-function convertValues(obj) {
-  return { wind: convertWind(obj), sun: convertSun(obj) };
-}
-
 // Convert wind direction
 function convertWind(directionDegree) {
   const windDirection = directionDegree;
