@@ -255,7 +255,7 @@ function getGifId(type) {
     return weatherGifId[type];
   }
   console.log('No matching gif id.');
-  return 0;
+  return weatherGifId.clouds;
 }
 
 async function setGif(id) {
