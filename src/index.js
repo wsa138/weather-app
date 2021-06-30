@@ -151,13 +151,13 @@ function replaceElementValues(ele, val) {
 function displayData(dataObj, location) {
   // Replace text content
   replaceElementValues(dateText, dataObj.date);
-  replaceElementValues(description, dataObj.description);
+  replaceElementValues(description, capFirst(dataObj.description));
   replaceElementValues(sun, `${dataObj.sunrise}/${dataObj.sunset}`);
   replaceElementValues(temp, dataObj.temp);
   replaceElementValues(tempMax, dataObj.temp_max);
   replaceElementValues(tempMin, dataObj.temp_min);
   replaceElementValues(humidity, `${dataObj.humidity}%`);
-  replaceElementValues(wind, `${dataObj.speed}/${dataObj.wind}`);
+  replaceElementValues(wind, `${dataObj.speed} m/h ${dataObj.wind}`);
   replaceElementValues(locationEle, location);
   setGif(dataObj.gifId);
 }
@@ -271,4 +271,12 @@ async function setGif(id) {
         console.log(err);
       });
   }
+}
+
+// Capitalize first letter of each word in a string.
+function capFirst(str) {
+  const newArr = str
+    .split(' ')
+    .map((word) => word[0].toUpperCase() + word.substr(1));
+  return newArr.join(' ');
 }
