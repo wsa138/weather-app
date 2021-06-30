@@ -141,25 +141,32 @@ function convertTemp(tempNum) {
   return ((tempNum - 32) * 5) / 9;
 }
 
-// Takes original weather data and creates new object with the necessary
-// properties created by running appropriate functions on original weather data.
-function updateWeatherData(original) {
-  const updatedData = { ...original };
+// Replace the text content of element with the provided value.
+function replaceElementValues(ele, val) {
+  ele.textContent = val;
+}
 
-  delete updatedData.deg;
-  delete updatedData.sunrise;
-  delete updatedData.sunset;
+// Displays the information to the page.
+function displayData(dataObj, location) {
+  // Replace text content
+  replaceElementValues(dateText, dataObj.date);
+  replaceElementValues(description, dataObj.description);
+  replaceElementValues(sun, `${dataObj.sunrise}/${dataObj.sunset}`);
+  replaceElementValues(temp, dataObj.temp);
+  replaceElementValues(tempMax, dataObj.temp_max);
+  replaceElementValues(tempMin, dataObj.temp_min);
+  replaceElementValues(humidity, `${dataObj.humidity}%`);
+  replaceElementValues(wind, `${dataObj.speed}/${dataObj.wind}`);
+  replaceElementValues(locationEle, location);
+}
 
-  const date = new Date();
-  updatedData.date = date.toDateString();
-  updatedData.sunrise = convertSun(original.sunrise);
-  updatedData.sunset = convertSun(original.sunset);
-  updatedData.tempCel = convertTemp(original.temp).toFixed(2);
-  updatedData.tempMaxCel = convertTemp(original.temp_max).toFixed(2);
-  updatedData.tempMinCel = convertTemp(original.temp_min).toFixed(2);
-  updatedData.wind = convertWind(original.deg);
+document.getElementById('locationSubmit').click();
 
-  return updatedData;
+// Replace temperature values with selected temperature value.
+function changeTemp(current, max, min) {
+  temp.textContent = current;
+  tempMax.textContent = max;
+  tempMin.textContent = min;
 }
 
 // Runs app which takes input, gets data and display data to page.
@@ -187,30 +194,45 @@ async function runApp() {
   });
 }
 
-// Replace the text content of element with the provided value.
-function replaceElementValues(ele, val) {
-  ele.textContent = val;
+// Use regex to determine the type of weather gif needed.
+function findGif(info) {
+  const currentWeather = info;
+  const clouds = /clouds/i;
+  const thunderstorm = /thunderstorm/i;
+  const drizzle = /drizzle/i;
+  const rain = /rain/i;
+  const snow = /snow/i;
+  const clear = /clear/i;
+
+  const weatherTypeRegex = [clouds, thunderstorm, drizzle, rain, snow, clear];
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const reg of weatherTypeRegex) {
+    if (reg.test(currentWeather)) {
+      return currentWeather.match(reg)[0];
+    }
+  }
 }
 
-// Displays the information to the page.
-function displayData(dataObj, location) {
-  // Replace text content
-  replaceElementValues(dateText, dataObj.date);
-  replaceElementValues(description, dataObj.description);
-  replaceElementValues(sun, `${dataObj.sunrise}/${dataObj.sunset}`);
-  replaceElementValues(temp, dataObj.temp);
-  replaceElementValues(tempMax, dataObj.temp_max);
-  replaceElementValues(tempMin, dataObj.temp_min);
-  replaceElementValues(humidity, `${dataObj.humidity}%`);
-  replaceElementValues(wind, `${dataObj.speed}/${dataObj.wind}`);
-  replaceElementValues(locationEle, location);
-}
+// Takes original weather data and creates new object with the necessary
+// properties created by running appropriate functions on original weather data.
+function updateWeatherData(original) {
+  const updatedData = { ...original };
 
-document.getElementById('locationSubmit').click();
+  delete updatedData.deg;
+  delete updatedData.sunrise;
+  delete updatedData.sunset;
 
-// Replace temperature values with selected temperature value.
-function changeTemp(current, max, min) {
-  temp.textContent = current;
-  tempMax.textContent = max;
-  tempMin.textContent = min;
+  const date = new Date();
+  updatedData.date = date.toDateString();
+  updatedData.sunrise = convertSun(original.sunrise);
+  updatedData.sunset = convertSun(original.sunset);
+  updatedData.tempCel = convertTemp(original.temp).toFixed(2);
+  updatedData.tempMaxCel = convertTemp(original.temp_max).toFixed(2);
+  updatedData.tempMinCel = convertTemp(original.temp_min).toFixed(2);
+  updatedData.wind = convertWind(original.deg);
+  updatedData.weatherType = findGif(original.description);
+  console.log(updatedData);
+
+  return updatedData;
 }
