@@ -154,9 +154,9 @@ function updateWeatherData(original) {
   updatedData.date = date.toDateString();
   updatedData.sunrise = convertSun(original.sunrise);
   updatedData.sunset = convertSun(original.sunset);
-  updatedData.tempCel = convertTemp(original.temp);
-  updatedData.tempMaxCel = convertTemp(original.temp_max);
-  updatedData.tempMinCel = convertTemp(original.temp_min);
+  updatedData.tempCel = convertTemp(original.temp).toFixed(2);
+  updatedData.tempMaxCel = convertTemp(original.temp_max).toFixed(2);
+  updatedData.tempMinCel = convertTemp(original.temp_min).toFixed(2);
   updatedData.wind = convertWind(original.deg);
 
   return updatedData;
@@ -168,6 +168,23 @@ async function runApp() {
   const weatherData = await getWeather(getData(location));
   const newWeatherData = updateWeatherData(weatherData);
   displayData(newWeatherData, location);
+
+  // Unit button event listeners
+  document.getElementById('tempF').addEventListener('click', () => {
+    changeTemp(
+      newWeatherData.temp,
+      newWeatherData.temp_max,
+      newWeatherData.temp_min
+    );
+  });
+
+  document.getElementById('tempC').addEventListener('click', () => {
+    changeTemp(
+      newWeatherData.tempCel,
+      newWeatherData.tempMaxCel,
+      newWeatherData.tempMinCel
+    );
+  });
 }
 
 // Replace the text content of element with the provided value.
@@ -191,15 +208,9 @@ function displayData(dataObj, location) {
 
 document.getElementById('locationSubmit').click();
 
-document.getElementById('tempF').addEventListener('click', () => {
-  changeTemp();
-});
-
-document.getElementById('tempC').addEventListener('click', () => {
-  changeTemp();
-});
-
 // Replace temperature values with selected temperature value.
-function changeTemp() {
-  console.log('Change temp');
+function changeTemp(current, max, min) {
+  temp.textContent = current;
+  tempMax.textContent = max;
+  tempMin.textContent = min;
 }
