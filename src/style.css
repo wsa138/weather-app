@@ -90,3 +90,7 @@ body {
 #descriptionText {
   font-size: 2rem;
 }
+
+.selectedUnit {
+  background-color: red;
+}

@@ -11,6 +11,8 @@ const humidity = document.getElementById('humidity');
 const wind = document.getElementById('wind');
 const locationEle = document.getElementById('locationText');
 const weatherGif = document.getElementById('weatherGif');
+const tempBtnF = document.getElementById('tempF');
+const tempBtnC = document.getElementById('tempC');
 
 // Make fetch request for city info and return json object.
 async function getData(city) {
@@ -179,20 +181,22 @@ async function runApp() {
   displayData(newWeatherData, location);
 
   // Unit button event listeners
-  document.getElementById('tempF').addEventListener('click', () => {
+  tempBtnF.addEventListener('click', (e) => {
     changeTemp(
       newWeatherData.temp,
       newWeatherData.temp_max,
       newWeatherData.temp_min
     );
+    toggleUnitBtn(tempBtnF, tempBtnC);
   });
 
-  document.getElementById('tempC').addEventListener('click', () => {
+  tempBtnC.addEventListener('click', () => {
     changeTemp(
       newWeatherData.tempCel,
       newWeatherData.tempMaxCel,
       newWeatherData.tempMinCel
     );
+    toggleUnitBtn(tempBtnC, tempBtnF);
   });
 }
 
@@ -279,4 +283,10 @@ function capFirst(str) {
     .split(' ')
     .map((word) => word[0].toUpperCase() + word.substr(1));
   return newArr.join(' ');
+}
+
+// Toggle the class on each unit.
+function toggleUnitBtn(pressed, reset) {
+  pressed.classList.add('selectedUnit');
+  reset.classList.remove('selectedUnit');
 }
