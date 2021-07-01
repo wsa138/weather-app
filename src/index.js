@@ -223,6 +223,7 @@ function findGif(info) {
 // Takes original weather data and creates new object with the necessary
 // properties created by running appropriate functions on original weather data.
 function updateWeatherData(original) {
+  console.log(original);
   const updatedData = { ...original };
 
   delete updatedData.deg;
@@ -233,12 +234,17 @@ function updateWeatherData(original) {
   updatedData.date = date.toDateString();
   updatedData.sunrise = convertSun(original.sunrise);
   updatedData.sunset = convertSun(original.sunset);
-  updatedData.tempCel = convertTemp(original.temp).toFixed(2);
-  updatedData.tempMaxCel = convertTemp(original.temp_max).toFixed(2);
-  updatedData.tempMinCel = convertTemp(original.temp_min).toFixed(2);
+  updatedData.temp = Math.round(original.temp);
+  updatedData.temp_max = Math.round(original.temp_max);
+  updatedData.temp_min = Math.round(original.temp_min);
+  updatedData.tempCel = Math.round(convertTemp(original.temp));
+  updatedData.tempMaxCel = Math.round(convertTemp(original.temp_max));
+  updatedData.tempMinCel = Math.round(convertTemp(original.temp_min));
   updatedData.wind = convertWind(original.deg);
   updatedData.weatherType = findGif(original.description);
   updatedData.gifId = getGifId(updatedData.weatherType);
+
+  console.log(updatedData);
 
   return updatedData;
 }
