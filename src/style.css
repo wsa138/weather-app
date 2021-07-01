@@ -8,16 +8,16 @@ body {
   background: skyblue;
 }
 
-#cityDate {
-  text-align: center;
-}
-
 #currentWeather {
   display: flex;
   justify-content: center;
   background-color: blue;
   height: 300px;
   margin: 0px 50px 0px 50px;
+}
+
+#cityDate {
+  text-align: center;
 }
 
 /* Weather Info Section Containers*/
@@ -50,10 +50,16 @@ body {
   align-items: center;
 }
 
+/* Weather info details */
+
 #gifSection {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#descriptionText {
+  margin-top: 0.5em;
 }
 
 #tempSection div {
@@ -76,8 +82,8 @@ body {
 
 /*Weather Info Elements */
 #weatherGif {
-  width: 100px;
-  height: 100px;
+  width: 12em;
+  height: 12em;
   background-color: blue;
 }
 
