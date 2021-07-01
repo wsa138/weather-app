@@ -158,7 +158,7 @@ function displayData(dataObj, location) {
   replaceElementValues(tempMin, dataObj.temp_min);
   replaceElementValues(humidity, `${dataObj.humidity}%`);
   replaceElementValues(wind, `${dataObj.speed} m/h ${dataObj.wind}`);
-  replaceElementValues(locationEle, location);
+  replaceElementValues(locationEle, capFirst(location));
   setGif(dataObj.gifId);
 }
 
