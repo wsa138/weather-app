@@ -24,36 +24,29 @@
   </div>
 
   <section id="currentWeather">
-    <div id="summary" class="info">
-      <div id="gifSection">
-        <img id="weatherGif" src="" alt="Gif of current weather">
-        <p id="descriptionText"></p>
-      </div>
-    </div>
+    <section id="summary" class="info">
+      <img id="weatherGif" src="" alt="Gif of current weather">
+      <p id="descriptionText"></p>
+    </section>
 
-    <div id="tempSection">
+    <section id="tempSection">
+      <div id="currentTemp">
+        <h3 id="tempText" class="fahrenheit">Temp</h3>
+        <div id="mainTemp">
+          <button id="tempF" class='selectedUnit'> &#176F</button>
+          <button id="tempC"> &#176C</button>
+        </div>
+      </div>
       <div>
-        <div>
-          <h3 id="currentTemp">Current Temp</h3>
-          <div id="mainTemp">
-            <p id="tempText" class="fahrenheit">Temp</p>
-            <button id="tempF" class='selectedUnit'> &#176F</button>
-            <button id="tempC"> &#176C</button>
-          </div>
-        </div>
-        <div>
-          <h3>High:</h3>
-          <p id="tempMaxText">Max</p>
-        </div>
-        <div>
-          <h3>Low:</h3>
-          <p id="tempMinText">Min</p>
-        </div>
+        <h3>High:</h3>
+        <p id="tempMaxText">Max</p>
       </div>
+      <div>
+        <h3>Low:</h3>
+        <p id="tempMinText">Min</p>
+    </section>
 
-
-    </div>
-    <div id="otherInfo">
+    <section id="otherInfo">
       <div>
         <h3>Sunrise/Sunset:</h3>
         <p id="sunText">Sun Rise</p>
@@ -67,8 +60,7 @@
         <h3>Wind</h3>
         <p id="wind">wind</p>
       </div>
-    </div>
-    </div>
+    </section>
   </section>
 </body>
 
