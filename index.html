@@ -1,1 +1,71 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Weather App</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"><script defer="defer" src="main.js"></script></head><body><form action=""><label for="locationInput">Location:</label> <input id="locationInput" name="locationInput" value="New York City"> <input type="submit" value="Search" id="locationSubmit"></form><div id="cityDate"><h1 id="locationText">Location</h1><h2 id="dateText">Date</h2></div><section id="currentWeather"><section id="summary" class="info"><div id="gifContainer"><img id="weatherGif" src="" alt="Gif of current weather"></div><p id="descriptionText"></p></section><section id="tempSection"><div id="currentTemp"><h3 id="tempText" class="fahrenheit">Temp</h3><div id="unitContainer"><button id="tempF" class="selectedUnit">&#176F</button> <button id="tempC">&#176C</button></div></div><div id="highLow"><div><h3>H:</h3><p id="tempMaxText">Max</p></div><div><h3>L:</h3><p id="tempMinText">Min</p></div></div></section><section id="otherInfo"><div id="humidity"><h3>Humidity:</h3><p id="humidityText">Humidity</p></div><div id="wind"><h3>Wind</h3><p id="windText">wind</p></div><div id="sun"><h3>Sunrise/Sunset:</h3><p id="sunText">Sun Rise</p></div></section></section></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<script defer src="main.js"></script></head>
+
+<body>
+  <form action="">
+    <label for="locationInput">Location:</label>
+    <input type="text" id="locationInput" name="locationInput" value="New York City">
+    <input type="submit" value="Search" id="locationSubmit">
+  </form>
+
+  <div id="cityDate">
+    <h1 id="locationText">Location</h1>
+    <h2 id="dateText">Date</h2>
+  </div>
+
+  <section id="currentWeather">
+    <section id="summary" class="info">
+      <div id="gifContainer">
+        <img id="weatherGif" src="" alt="Gif of current weather">
+      </div>
+      <p id="descriptionText"></p>
+    </section>
+
+    <section id="tempSection">
+      <div id="currentTemp">
+        <h3 id="tempText" class="fahrenheit">Temp</h3>
+        <div id="unitContainer">
+          <button id="tempF" class='selectedUnit'> &#176F</button>
+          <button id="tempC"> &#176C</button>
+        </div>
+      </div>
+      <div id="highLow">
+        <div>
+          <h3>H:</h3>
+          <p id="tempMaxText">Max</p>
+        </div>
+        <div>
+          <h3>L:</h3>
+          <p id="tempMinText">Min</p>
+        </div>
+    </section>
+
+    <section id="otherInfo">
+
+      <div id="humidity">
+        <h3>Humidity:</h3>
+        <p id="humidityText">Humidity</p>
+      </div>
+      <div id="wind">
+        <h3>Wind</h3>
+        <p id="windText">wind</p>
+      </div>
+      <div id=sun>
+        <h3>Sunrise/Sunset:</h3>
+        <p id="sunText">Sun Rise</p>
+      </div>
+    </section>
+  </section>
+</body>
+
+</html>
