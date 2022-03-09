@@ -1,1 +1,1 @@
-A weather app.
+A weather app using the OpenWeatherMap API to display relevant weather information for the input location. This project uses vanilla Javascript and was a practice project for getting used to using APIs.
